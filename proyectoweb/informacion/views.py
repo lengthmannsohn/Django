@@ -52,4 +52,34 @@ def colores(request):
     #DEBEMOS COMPROBAR QUE RECIBIMOS ALGO LLAMADO micolor
     if ('micolor' in request.GET):
         colorRecibido = request.GET['micolor']
-    return render(request, 'informacion/colores.html')
+        #CON EL COLOR RECIBIDO SE LO DEVOLVEMOS AL DIBUJO PARA PINTARLO
+        context = {
+            "colordibujo": colorRecibido
+        }
+        return render(request, 'informacion/colores.html', context)
+    else:
+        return render(request, 'informacion/colores.html')
+    
+def saludo(request):
+    #PREGUNTAMOS DE FORMA OBLIGATORIA SI HEMOS RECIBIDO DATOS DEL FORMULARIO
+    if ('cajanombre' in request.POST):
+        nombreRecibido = request.POST['cajanombre']
+        context = {
+            "nombre": nombreRecibido
+        }
+        return render(request, 'informacion/saludo.html', context)
+    else:
+        return render(request, 'informacion/saludo.html')
+    
+def sumarNumeros(request):
+    if ('cajanumero1' in request.POST):
+        num1 = request.POST['cajanumero1']
+        num2 = request.POST['cajanumero2']
+        suma = int(num1) + int(num2)
+        context = {
+            "suma": suma,
+            "numero1": num1,
+            "numero2": num2
+        }
+        return render(request, 'informacion/sumarnumeros.html', context)
+    return render(request, 'informacion/sumarnumeros.html')

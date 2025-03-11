@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'informacion/menu.html' %}
+    <h1>Página de saludo</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Introduzca su nombre</label>
+        <input type="text" name="cajanombre" required/>
+        <button>
+            Enviar datos
+        </button>
+    </form>
+    <h1 style="color:blue">
+        Bienvenido a mi página, Sr/Sra {{nombre}}
+    </h1>
+</body>
+</html>
