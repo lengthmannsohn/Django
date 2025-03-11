@@ -15,5 +15,41 @@ def futbol(request):
     return render(request, 'informacion/futbol.html', data)
 
 def jugadores(request):
-    return render(request, 'informacion/jugadores.html')
+    listaJugadores=[
+        {
+            "Nombre":"Cristiano Ronaldo",
+            "Demarcacion":"Delantero",
+            "Numero": 7
+        },
+        {
+            "Nombre": "Guti",
+            "Demarcacion": "Centrocampista",
+            "Numero": 14
+        },
+        {
+            "Nombre": "Karim Benzema",
+            "Demarcacion": "Delantero",
+            "Numero":9
+        },
+        {
+            "Nombre": "Toni Kroos",
+            "Demarcacion": "Centrocampista",
+            "Numero":8
+        },
+        {
+            "Nombre": "Thibaut Courtois",
+            "Demarcacion": "Portero",
+            "Numero": 1
+        }
+    ]
+    context = {
+        "jugadores": listaJugadores
+    }
+    return render(request, 'informacion/jugadores.html',context)
 
+def colores(request):
+    #RECUPERAMOS LA VARIABLE QUE NOS ESTAN ENVIANDO MEDIANTE GET(micolor)
+    #DEBEMOS COMPROBAR QUE RECIBIMOS ALGO LLAMADO micolor
+    if ('micolor' in request.GET):
+        colorRecibido = request.GET['micolor']
+    return render(request, 'informacion/colores.html')
