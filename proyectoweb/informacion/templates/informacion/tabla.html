@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'informacion/menu.html' %}
+    <h1>Tabla de multiplicar</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>-Introduzca número</label>
+        <input type="number" name="cajanumero"/><br/>
+        <button>
+            Mostrar tabla
+        </button>
+    </form>
+    <table border="1">
+        <tr>
+            <th>OPERACION</th>
+            <th>RESULTADO</th>
+        </tr>
+        {% for dato in listatabla %}
+        <tr>
+            <td>{{dato.operacion}}</td>
+            <td>{{dato.resultado}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
