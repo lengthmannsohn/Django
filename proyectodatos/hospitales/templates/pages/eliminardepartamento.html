@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'pages/menu.html' %}
+    <h1>Eliminar Departamento</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Id departamento</label>
+        <input type="number" name="cajanumero"/><br/>
+        <button>
+            Eliminar departamento
+        </button>
+    </form>
+</body>
+</html>

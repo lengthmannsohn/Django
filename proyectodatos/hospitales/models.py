@@ -11,6 +11,22 @@ class ServiceDepartamentos:
     def __init__(self):
         self.connection = oracledb.connect(user='SYSTEM', password='oracle', dsn='localhost/xe')
     
+    def insertarDepartamento(self, numero, nombre, localidad):
+        sql = "insert into DEPT values (:p1, :p2, :p3)"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (numero, nombre, localidad))
+        registros = cursor.rowcount
+        self.connection.commit()
+        cursor.close()
+        return registros
+    
+    def eliminarDepartamento(self, numero):
+        sql = "delete from DEPT where DEPT_NO = :p1)"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (numero,))
+        self.connection.commit()
+        cursor.close()
+
     def getDepartamentos(self):
         sql = "select * from DEPT"
         cursor = self.connection.cursor()
