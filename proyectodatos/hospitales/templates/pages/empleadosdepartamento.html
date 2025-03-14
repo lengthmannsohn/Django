@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'pages/menu.html' %}
+    <h1>Buscar empleados por departamento</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Numero de departamento</label>
+        <input type="number" name="cajanumero"/>
+        <button>
+            Buscar empleado
+        </button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Apellido</th>
+            <th>Oficio</th>
+            <th>Salario</th>
+            <th>Numero deparatamento</th>
+        </tr>
+        {% for e in empleados %}
+        <tr>
+            <td>{{ d.numero }}</td>
+            <td>{{ d.nombre }}</td>
+            <td>{{ d.oficio }}</td>
+            <td>{{ d.salario }}</td>
+            <td>{{ d.deptNo }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
