@@ -19,6 +19,9 @@
                 <td>{{ d.numero }}</td>
                 <td>{{ d.nombre }}</td>
                 <td>{{ d.localidad }}</td>
+                <td>
+                    <a href="/detallesdept?id={{d.numero}}">Detalles</a>
+                </td>
             </tr>
         {% endfor %}
     </table>

@@ -27,9 +27,7 @@ def hospitalesBBDD(request):
 def insertarDepartamento(request):
     if ('cajanumero' in request.POST):
         servicio = ServiceDepartamentos()
-        numero = request.POST['cajanumero']
-        nombre = request.POST['cajanombre']   
-        localidad = request.POST['cajalocalidad']
+    
         registros = servicio.insertarDepartamento(numero, nombre, localidad)
         departamentos = servicio.getDepartamentos()
         context = {
@@ -44,9 +42,38 @@ def eliminarDepartamento(request):
     if ('cajanumero' in request.POST):
         servicio = ServiceDepartamentos()
         numero = request.POST['cajanumero']
-        servicio.eliminarDepartamento(numero)
-        departamentos = servicio.getDepartamentos()
+        registros = servicio.eliminarDepartamento(numero)
+        context = {
+            "mensaje": "Registros eliminados: " + str(registros)
+        }
 
-        return render(request, 'pages/departamentos.html')
+        return render(request, 'pages/eliminardepartamento.html', context)
     else:
         return render(request, 'pages/eliminardepartamento.html')
+    
+def modificarDepartamento(request):
+    if ('cajanumero' in request.POST):
+        servicio = ServiceDepartamentos()
+        numero = request.POST['cajanumero']
+        nombre = request.POST['cajanombre']   
+        localidad = request.POST['cajalocalidad']
+        registros = servicio.modificarDepartamento(numero, nombre, localidad)
+        context = {
+            "mensaje": "Registros modificados: " + str(registros)
+        }
+
+        return render(request, 'pages/modificardepartamento.html', context)
+    else:
+        return render(request, 'pages/modificardepartamento.html')
+    
+def detallesDepartamento(request):
+    if ('id' in request.GET):
+        servicio = ServiceDepartamentos()
+        numero = request.GET['id']
+        departamento = servicio.detallesDepartamento(numero)
+        context = {
+            "departamento": departamento
+        }
+        return render(request, 'pages/detallesdepartamento.html', context)
+    else:
+        return render(request, 'pages/detallesdepartamento.html')

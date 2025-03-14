@@ -6,5 +6,7 @@ urlpatterns = [
     path('departamentos/', views.departamentosBBDD, name='departamentos'),
     path('hospitales/', views.hospitalesBBDD, name='hospitales'),
     path('insertardept/', views.insertarDepartamento, name='insertardept'),
-    path('eliminardept/', views.eliminarDepartamento, name="eliminardept")
+    path('eliminardept/', views.eliminarDepartamento, name="eliminardept"),
+    path('modificardept/', views.modificarDepartamento, name="modificardept"),
+    path('detallesdept/', views.detallesDepartamento, name="detallesdept")
 ]
