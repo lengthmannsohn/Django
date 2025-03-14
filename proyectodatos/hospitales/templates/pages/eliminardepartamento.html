@@ -11,7 +11,7 @@
     <form method="post">
         {% csrf_token %}
         <label>Id departamento</label>
-        <input type="number" name="cajanumero"/><br/>
+        <input type="number" name="cajanumero" value="{{numero}}"/>
         <button>
             Eliminar departamento
         </button>
