@@ -7,31 +7,34 @@
 </head>
 <body>
     {% include 'pages/menu.html' %}
-    <h1>Buscar empleados por departamento</h1>
+    <h1 style="color:blue">
+        Empleados departamento
+    </h1>
     <form method="post">
         {% csrf_token %}
-        <label>Numero de departamento</label>
-        <input type="number" name="cajanumero"/>
+        <label>Seleccione departamento:</label>
+        <select name="iddepartamento">
+            {% for dept in departamentos %}
+            <option value="{{dept.numero}}">{{dept.nombre}}</option>
+            {% endfor %}
+        </select>
         <button>
-            Buscar empleado
+            Buscar empleados
         </button>
     </form>
-
     <table border="1">
         <tr>
-            <th>Id</th>
             <th>Apellido</th>
             <th>Oficio</th>
             <th>Salario</th>
-            <th>Numero deparatamento</th>
+            <th>Departamento</th>
         </tr>
-        {% for e in empleados %}
+        {% for emp in empleados %}
         <tr>
-            <td>{{ d.numero }}</td>
-            <td>{{ d.nombre }}</td>
-            <td>{{ d.oficio }}</td>
-            <td>{{ d.salario }}</td>
-            <td>{{ d.deptNo }}</td>
+            <td>{{emp.apellido}}</td>
+            <td>{{emp.oficio}}</td>
+            <td>{{emp.salario}}</td>
+            <td>{{emp.departamento}}</td>
         </tr>
         {% endfor %}
     </table>
