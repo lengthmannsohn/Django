@@ -13,10 +13,32 @@ class Personaje:
     IdPersonaje = 0
     personaje = ""
     imagen = ""
+    idSerie = 0
 
 class ServiceSeries:
     def __init__(self):
         self.connection = oracledb.connect(user='SYSTEM', password='oracle', dsn='localhost/xe')
+    
+    def updatePersonaje(self, idPersonaje, nombre, imagen, idSerie):
+        sql = "update PERSONAJES set PERSONAJE=:p1, IMAGEN=:p2, IDSERIE=:p3 where IDPERSONAJE=:p4"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (nombre, imagen, idSerie, idPersonaje))
+        cursor.close()
+
+    def getPersonajesSerie(self, idserie):
+        sql = "select * from PERSONAJES where IDSERIE=:p1"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (idserie, ))
+        lista = []
+        for row in cursor:
+            person = Personaje()
+            person.idPersonaje = row[0]
+            person.nombre = row[1]
+            person.imagen = row[2]
+            person.idSerie = row[3]
+            lista.append(person)
+        cursor.close()
+        return lista
 
     def getSeries(self):
         sql = "select * from SERIES"
