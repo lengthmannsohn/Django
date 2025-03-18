@@ -18,24 +18,56 @@ def personajesSeries(request):
     else:
         return render(request, 'pages/personajesserie.html')
 
-def metodoSeries(request):
-    servicio = ServiceSeries()
-    series = servicio.getSeries()
-    context ={
-        "series": series
-    }
-    return render(request, 'pages/series.html', context)
-
 def modificarPersonaje(request):
-    if ('idpersonaje' in request.GET):
+    servicio = ServiceSeries()
+    if ('cajaimagen' in request.POST):
+        idpersonaje = request.POST['cajaidpersonaje']
+        nombre = request.POST['cajanombre']
+        imagen = request.POST['cajaimagen']
+        idserie = request.POST['cajaserie']
+        servicio.updatePersonaje(idpersonaje, nombre, imagen, idserie)
         return render(request, 'pages/modificarpersonaje.html')
+    elif ('idpersonaje' in request.GET):
+        idpersonaje = request.GET['idpersonaje']
+        personaje = servicio.findPersonaje(idpersonaje)
+        series = servicio.getSeries()
+        context = {
+            "personaje": personaje,
+            "series": series
+        }
+        return render(request, 'pages/modificarpersonaje.html', context)
+        
     else:
         return render(request, 'pages/modificarpersonaje.html')
+    
+def updatePersonSerie(request):
+    servicio = ServiceSeries()
+    if ('cajapersonaje' in request.POST):
+        idpersonaje = request.POST['cajapersonaje']
+        idserie = request.POST['cajaserie']
+        servicio.updatePersonSerie(idpersonaje, idserie)
+        return render(request, 'pages/updatepersonserie.html')
+    else:
+        personaje = servicio.getPersonajes()
+        series = servicio.getSeries()
+        context = {
+            "personaje": personaje,
+            "series": series
+        }
+        return render(request, 'pages/updatepersonserie.html', context)
 
 def metodoPersonajes(request):
     servicio = ServiceSeries()
     personajes = servicio.getPersonajes()
-    context ={
+    context = {
         "personajes": personajes
     }
     return render(request, 'pages/personajes.html', context)
+
+def metodoSeries(request):
+    servicio = ServiceSeries()
+    series = servicio.getSeries()
+    context = {
+        "series": series
+    }
+    return render(request, 'pages/series.html', context)
