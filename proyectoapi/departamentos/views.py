@@ -42,7 +42,7 @@ def modificar(request):
         #UPDATE
         id = request.POST['cajaid']
         nombre = request.POST['cajanombre']
-        localidad = request.POST['localidad']
+        localidad = request.POST['cajalocalidad']
         servicio.update(id, nombre, localidad)
         departamentos = servicio.getDepartamentos()
         context = {
@@ -51,7 +51,7 @@ def modificar(request):
         return render(request, 'pages/index.html', context)
     elif ('id' in request.GET):
         #BUSCAR
-        id = request.GET['ID']
+        id = request.GET['id']
         dept = servicio.findDepartamento(id)
         context = {
             "departamento": dept
