@@ -1,0 +1,65 @@
+{
+    "type": "bar",
+    "data": {
+      "labels": [
+        "Directores y gerentes",
+        "Técnicos y profesionales científicos e intelectuales",
+        "Técnicos y profesionales de apoyo",
+        "Empleados contables, administrativos y otros de oficina",
+        "Camareros",
+        "Dependientes de tiendas y almacenes",
+        "Otros trabajadores de servicios y vendedores",
+        "Trabajadores cualificados agrícolas, ganaderos, forestales y pesqueros",
+        "Artesanos y trabajadores cualificados de industrias manufactureras y construcción",
+        "Operadores de instalaciones y maquinaria, y montadores",
+        "Trabajadores no cualificados"
+      ],
+      "datasets": [
+        {
+          "label": "Porcentaje de ocupados",
+          "data": [
+            2.5,
+            19.8,
+            10.7,
+            8.9,
+            6.2,
+            5.8,
+            5.6,
+            4.0,
+            11.5,
+            6.3,
+            12.7
+          ],
+          "backgroundColor": "rgba(75, 192, 192, 0.6)",
+          "borderColor": "rgba(75, 192, 192, 1)",
+          "borderWidth": 1
+        }
+      ]
+    },
+    "options": {
+      "responsive": true,
+      "scales": {
+        "x": {
+          "beginAtZero": true,
+          "title": {
+            "display": true,
+            "text": "Categorías profesionales"
+          }
+        },
+        "y": {
+          "beginAtZero": true,
+          "title": {
+            "display": true,
+            "text": "Porcentaje de ocupados"
+          }
+        }
+      },
+      "plugins": {
+        "title": {
+          "display": true,
+          "text": "Distribución de la población ocupada en España por categorías profesionales (Q4 2024)"
+        }
+      }
+    }
+  }
+  
